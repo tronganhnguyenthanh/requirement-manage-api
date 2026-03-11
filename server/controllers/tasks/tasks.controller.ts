@@ -3,23 +3,14 @@ import {prisma} from "../../lib/prisma"
 // Add new task
 const addNewTask = async (req:Request, res:Response):Promise<void> => {
   try{
-    const {taskName, taskDescription, firstName, lastName} = req.body 
-    await prisma.employee.create({
+    const {taskId, taskName, taskDescription} = req.body 
+    await prisma.tasks.create({
      data:{
-      firstName:firstName, 
-      lastName:lastName, 
-      task:{
-       createMany:{
-        data:{
-         taskName:taskName,
-         taskDescription:taskDescription
-        }
-       }
-      }},
-      include:{
-       task:true
-      }}
-    )
+      taskId:taskId,
+      taskName:taskName,
+      taskDescription:taskDescription
+    } 
+    })
     res.status(200).json({message:"Task created"})
   }catch(error:any){
     res.status(400).json({message:error.message})

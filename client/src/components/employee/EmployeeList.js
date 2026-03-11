@@ -116,6 +116,7 @@ const EmployeeList = () => {
        dataSource={employeeList} 
        columns={mergedColumns}
        rowClassName="editable-row"
+       pagination={{pageSize:5}}
      />
    </Form>
   )
